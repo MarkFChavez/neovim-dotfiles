@@ -20,7 +20,7 @@ let mapleader=","
 
 " git-blame.nvim
 let g:gitblame_enabled = 0
-nnoremap :Gbl <cmd>GitBlameToggle<cr>
+nnoremap :Gbl<cr> <cmd>GitBlameToggle<cr>
 
 " Standard config
 set relativenumber
