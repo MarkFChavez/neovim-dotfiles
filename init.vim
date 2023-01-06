@@ -3,14 +3,17 @@ call plug#begin()
 Plug 'overcache/NeoSolarized'
 Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'preservim/nerdtree'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'mhinz/vim-grepper'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-commentary'
-Plug 'f-person/git-blame.nvim'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-fugitive'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 " Load lua config
@@ -18,15 +21,21 @@ lua require("config")
 
 let mapleader=","
 
-" git-blame.nvim
-let g:gitblame_enabled = 0
-nnoremap :Gbl<cr> <cmd>GitBlameToggle<cr>
+filetype plugin indent on
+
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set clipboard=unnamed
 
 " Standard config
+set number
 set relativenumber
 set termguicolors
 set noswapfile
 set nohlsearch
+set incsearch
 
 " Triger `autoread` when files changes on disk
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
@@ -39,6 +48,9 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
+" Fugitive custom mappings
+nnoremap :Gbl<cr> <cmd>Git blame<cr>
+
 nnoremap ,, <C-^>
 
 " floaterm.vim
@@ -46,9 +58,13 @@ nnoremap <leader>f <cmd>FloatermToggle<cr>
 
 " Telescope.nvim -- Find files using Telescope command-line sugar.
 nnoremap <leader>t <cmd>Telescope find_files<cr>
+nnoremap <C-p> <cmd>Telescope git_files<cr>
 
 " Nvim-Tree
 nnoremap <leader><Tab> <cmd>NvimTreeToggle<cr>
+
+" NERDTree
+" nnoremap <leader><Tab> <cmd>NERDTree<cr>
 
 " vim-grepper
 let g:grepper               = {}
@@ -62,12 +78,15 @@ nnoremap <leader>g :Grepper -tool git<cr>
 set splitbelow
 set splitright
 
+" typescript-vim
+let g:typescript_indent_disable=1
+
 " NeoSolarized.vim
 colorscheme NeoSolarized
 set background=light
 
 " Tokyonight
-" colorscheme tokyonight-day
+" colorscheme tokyonight-night
 
 " Remap keys for horizontal and vertical splits
 nnoremap ss <cmd>spl<cr>
