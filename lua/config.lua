@@ -4,6 +4,8 @@
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
+require("colors")
+
 -- empty setup using defaults
 require("nvim-tree").setup()
 

@@ -14,6 +14,7 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-fugitive'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'leafgarland/typescript-vim'
+Plug 'rose-pine/neovim'
 call plug#end()
 
 " Load lua config
@@ -82,8 +83,8 @@ set splitright
 let g:typescript_indent_disable=1
 
 " NeoSolarized.vim
-colorscheme NeoSolarized
-set background=light
+" colorscheme NeoSolarized
+" set background=light
 
 " Tokyonight
 " colorscheme tokyonight-night
